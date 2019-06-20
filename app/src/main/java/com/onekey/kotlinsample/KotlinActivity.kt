@@ -1,18 +1,19 @@
 package com.onekey.kotlinsample
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.onekey.kotlinsample.entity.PrimaryStudent
-import com.onekey.kotlinsample.tools.MathTool
+import com.onekey.kotlinsample.base.BaseActivity
+import com.onekey.kotlinsample.fragment.KotlinOneFragment
 
-class KotlinActivity : AppCompatActivity() {
+class KotlinActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_kotlin)
+    override fun initView() {
+        var fragment = KotlinOneFragment()
 
-        MathTool.reduce(10, 5);
+        supportFragmentManager.beginTransaction()
+                .add(R.id.fragmentContainer, fragment)
+                .commit()
+    }
 
-        var student = PrimaryStudent("Amry")
+    override fun getContentViewID(): Int {
+        return R.layout.activity_kotlin
     }
 }

@@ -3,11 +3,11 @@ package com.onekey.kotlinsample.entity
 /**
  * Created by onekey on 19-6-19.
  */
-class Book {
+class Book(var name: String) {
 
-    var name: String = "";
+    var date : String = ""
 
-    constructor(name: String) {
-        this.name = name;
+    constructor(date : String, name: String) : this("") {
+        this.date = date
     }
 }

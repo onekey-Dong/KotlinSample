@@ -20,7 +20,7 @@ class PrimaryStudent(name: String, age: Int) : Student() {
     }
 
     fun read(name: String) {
-        read(Book(name))
+        read(Book(name, "2018=10").date)
     }
 
     init {
