@@ -6,7 +6,7 @@ import com.onekey.kotlinsample.fragment.KotlinOneFragment
 class KotlinActivity : BaseActivity() {
 
     override fun initView() {
-        var fragment = KotlinOneFragment()
+        var fragment = KotlinOneFragment.newInstance("one", "two")
 
         supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentContainer, fragment)

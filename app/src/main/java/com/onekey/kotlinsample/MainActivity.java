@@ -1,37 +1,16 @@
 package com.onekey.kotlinsample;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
-import com.onekey.kotlinsample.entity.Book;
-import com.onekey.kotlinsample.entity.InitOrderEntity;
-import com.onekey.kotlinsample.entity.PrimaryStudent;
-import com.onekey.kotlinsample.entity.Student;
-import com.onekey.kotlinsample.tools.MathTool;
-import com.onekey.kotlinsample.tools.Tlog;
+import com.onekey.kotlinsample.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+import org.jetbrains.annotations.NotNull;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        //Tlog.Companion.e(" >> " + MathTool.Companion.reduce(10, 8));
-
-        //Student student = new PrimaryStudent("jack", 10);
-        //student.eat("breakfast");
-        //student.read(new Book("long long age"));
-
-
-        new InitOrderEntity("Tony");
-    }
+public class MainActivity extends BaseActivity {
 
     public void onBtnClick(View view) {
         switch (view.getId()) {
-
             case R.id.btnToKotlin:
                 toAct(KotlinActivity.class);
                 break;
@@ -39,7 +18,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toAct(Class cls) {
-        Intent intent = new Intent(this, KotlinActivity.class);
+        Intent intent = new Intent(this, cls);
         startActivity(intent);
+    }
+
+    @Override
+    public int getContentViewID() {
+        return R.layout.activity_main;
+    }
+
+    @NotNull
+    @Override
+    public String umengTitle() {
+        return super.umengTitle();
     }
 }
