@@ -1,6 +1,7 @@
 package com.onekey.kotlinsample;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
 import com.onekey.kotlinsample.base.BaseActivity;
@@ -14,12 +15,12 @@ public class MainActivity extends BaseActivity {
             case R.id.btnToKotlin:
                 toAct(KotlinActivity.class);
                 break;
+            case R.id.btnToOne:
+                Bundle bundle = new Bundle();
+                bundle.putInt("index", 1);
+                toAct(KotlinActivity.class, bundle);
+                break;
         }
-    }
-
-    public void toAct(Class cls) {
-        Intent intent = new Intent(this, cls);
-        startActivity(intent);
     }
 
     @Override

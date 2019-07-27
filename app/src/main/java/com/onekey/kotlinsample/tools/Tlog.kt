@@ -1,5 +1,6 @@
 package com.onekey.kotlinsample.tools
 
+import android.util.Log
 import com.orhanobut.logger.Logger
 
 /**
@@ -19,6 +20,10 @@ class Tlog {
 
         fun i(msg: String) {
             Logger.i(msg)
+        }
+
+        fun e (tag : String , content : String) {
+            Log.e(tag, content)
         }
     }
 }

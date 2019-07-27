@@ -37,6 +37,18 @@ abstract class BaseActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+
+    fun toAct(cls: Class<*>) {
+        val intent = Intent(this, cls)
+        startActivity(intent)
+    }
+
+    fun toAct(cls: Class<*>, bundle: Bundle?) {
+        val intent = Intent(this, cls)
+        if (bundle != null) intent.putExtras(bundle)
+        startActivity(intent)
+    }
+
     fun isActDestroy(): Boolean {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
             return isFinishing || supportFragmentManager == null || supportFragmentManager.isDestroyed
