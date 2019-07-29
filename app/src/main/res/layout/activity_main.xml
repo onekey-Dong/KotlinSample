@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onBtnClick"
-            android:text="跳转kotlin页面" />
+            android:text="跳转类属性页面" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnToThree"

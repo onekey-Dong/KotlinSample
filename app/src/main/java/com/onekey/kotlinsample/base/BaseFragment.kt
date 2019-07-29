@@ -3,11 +3,11 @@ package com.onekey.kotlinsample.base
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.onekey.kotlinsample.tools.Tlog
 
 /**
  * Created by onekey on 2019/6/20.
@@ -39,6 +39,6 @@ abstract class BaseFragment : Fragment() {
 
     // open 关键字，允许子类复写该方法。
     open fun log(content : String) : Unit {
-        Tlog.e(TAG, content)
+        Log.d(TAG, content)
     }
 }

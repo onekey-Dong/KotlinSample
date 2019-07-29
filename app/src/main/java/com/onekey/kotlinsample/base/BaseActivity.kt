@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import com.onekey.kotlinsample.BuildConfig
 
 /**
  * Created by onekey on 2019/6/20.
@@ -26,12 +28,12 @@ abstract class BaseActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
 
-        fun launch(activity: AppCompatActivity, clazz: Class<*>, requestCode : Int) {
+        fun launch(activity: AppCompatActivity, clazz: Class<*>, requestCode: Int) {
             var intent = Intent(activity, clazz)
             activity.startActivityForResult(intent, requestCode)
         }
 
-        fun launch(activity: AppCompatActivity, clazz: Class<*>, requestCode : Int, enterAnim: Int, outAnim: Int) {
+        fun launch(activity: AppCompatActivity, clazz: Class<*>, requestCode: Int, enterAnim: Int, outAnim: Int) {
             var intent = Intent(activity, clazz)
             activity.startActivityForResult(intent, requestCode)
             activity.overridePendingTransition(enterAnim, outAnim)
@@ -71,5 +73,9 @@ abstract class BaseActivity : AppCompatActivity() {
             return isFinishing || supportFragmentManager == null || supportFragmentManager.isDestroyed
         }
         return isFinishing || isDestroyed
+    }
+
+    open fun log(content: String) {
+        if (BuildConfig.DEBUG) Log.d(TAG, content)
     }
 }

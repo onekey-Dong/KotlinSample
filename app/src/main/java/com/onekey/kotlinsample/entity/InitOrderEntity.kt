@@ -1,25 +1,28 @@
 package com.onekey.kotlinsample.entity
 
-import com.onekey.kotlinsample.tools.Tlog
-
 /**
  * Created by onekey on 19-6-19.
  */
-class InitOrderEntity (name: String) {
+class InitOrderEntity constructor (name: String = "defaultValue") {
 
     val firstProperty = "first property >>> $name".also (:: println)
+    val upperCaseName = name.toUpperCase()
 
     init {
-        Tlog.e("first init name >>> $name")
+        "first init name >>> $name".also (:: println)
     }
 
-    val secondProperty = "second property >>> ${name.length}"
+    val secondProperty = "second property >>> ${name.length}".also (:: println)
 
     init {
-        Tlog.e((name is String).toString() + " second property >>> ${name.length}")
+         "second init >>> ${name.length}".also(:: println)
     }
 
-    class InnerEntity {
-        
+    constructor(time: Int, name: String) : this (name) {
+        "time is $time".also (:: println)
+    }
+
+    init {
+       "$firstProperty <<= property =>> $secondProperty upperCase ==> $upperCaseName".also (:: println)
     }
 }

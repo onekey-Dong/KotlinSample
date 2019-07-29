@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import com.onekey.kotlinsample.base.BaseActivity
 import com.onekey.kotlinsample.fragment.KotlinClassFragment
 import com.onekey.kotlinsample.fragment.KotlinOneFragment
+import com.onekey.kotlinsample.fragment.PropertyFrag
 
 class KotlinActivity : BaseActivity() {
 
@@ -15,6 +16,8 @@ class KotlinActivity : BaseActivity() {
             fragment = KotlinOneFragment.newInstance("one", "two")
         } else if (index == 1) {
             fragment = KotlinClassFragment.newInstance("", "")
+        } else if (index == 2) {
+            fragment = PropertyFrag.instance()
         }
         supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentContainer, fragment)

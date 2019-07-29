@@ -15,6 +15,11 @@ class MainActivity : BaseActivity() {
                 bundle.putInt("index", 1)
                 BaseActivity.launch(this, KotlinActivity::class.java, bundle)
             }
+            R.id.btnToTwo -> {
+                val bundle = Bundle()
+                bundle.putInt("index", 2)
+                BaseActivity.launch(this, KotlinActivity::class.java, bundle)
+            }
         }
     }
 
