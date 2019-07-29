@@ -1,4 +1,4 @@
-package com.onekey.kotlinsample.`object`
+package com.onekey.kotlinsample.info
 
 /**
  * Created by onekey on 2019/6/20.
@@ -12,7 +12,6 @@ class PropertyEntity(name: String) {
 
     constructor(level: Int) : this("") {
         this.level = level
-
     }
 
     override fun toString(): String {

@@ -1,5 +1,6 @@
 package com.onekey.kotlinsample.base
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -9,6 +10,33 @@ import android.support.v7.app.AppCompatActivity
  * Created by onekey on 2019/6/20.
  */
 abstract class BaseActivity : AppCompatActivity() {
+
+    protected val TAG = this.javaClass.simpleName
+
+    companion object {
+
+        fun launch(context: Context, clazz: Class<*>) {
+            var intent = Intent(context, clazz)
+            context.startActivity(intent)
+        }
+
+        fun launch(context: Context, clazz: Class<*>, data: Bundle) {
+            var intent = Intent(context, clazz)
+            intent.putExtras(data)
+            context.startActivity(intent)
+        }
+
+        fun launch(activity: AppCompatActivity, clazz: Class<*>, requestCode : Int) {
+            var intent = Intent(activity, clazz)
+            activity.startActivityForResult(intent, requestCode)
+        }
+
+        fun launch(activity: AppCompatActivity, clazz: Class<*>, requestCode : Int, enterAnim: Int, outAnim: Int) {
+            var intent = Intent(activity, clazz)
+            activity.startActivityForResult(intent, requestCode)
+            activity.overridePendingTransition(enterAnim, outAnim)
+        }
+    }
 
     abstract fun getContentViewID(): Int
 
@@ -32,21 +60,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun initView() {}
 
-    fun startAct(clazz: Class<in Any>): Unit {
-        var intent = Intent(this, clazz)
-        startActivity(intent)
-    }
+    open fun loadData() {}
 
-
-    fun toAct(cls: Class<*>) {
-        val intent = Intent(this, cls)
-        startActivity(intent)
-    }
-
-    fun toAct(cls: Class<*>, bundle: Bundle?) {
-        val intent = Intent(this, cls)
-        if (bundle != null) intent.putExtras(bundle)
-        startActivity(intent)
+    fun startAct(clazz: Class<*>): Unit {
+        launch(this, clazz)
     }
 
     fun isActDestroy(): Boolean {
