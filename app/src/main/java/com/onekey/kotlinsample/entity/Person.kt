@@ -23,4 +23,15 @@ class Person (name: String, age : Int) : ICarPerson {
     override fun cleanCar(): Boolean {
         return false
     }
+
+    var property : String = "123"
+
+    get() {
+        return "no-value"
+        //return field
+    }
+
+    set(value) {
+        field = "no-set-action"
+    }
 }

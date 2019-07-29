@@ -54,7 +54,7 @@ class KotlinOneFragment : BaseFragment() {
         Tlog.e(objectData.errMsg)
         Tlog.e(GsonTool.toObject(json, BaseHttpEntity::class.javaObjectType).errMsg)
 
-        Tlog.e((RetrofitClient.instance("") == RetrofitClient.instance("")).toString())
+        Tlog.e((RetrofitClient.get() == RetrofitClient.get()).toString())
     }
 
     companion object {

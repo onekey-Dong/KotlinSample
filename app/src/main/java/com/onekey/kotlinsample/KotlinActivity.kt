@@ -10,14 +10,12 @@ class KotlinActivity : BaseActivity() {
     override fun initView() {
 
         var index = intent.getIntExtra("index", 0)
-
         var fragment : Fragment? = null
         if (index == 0) {
             fragment = KotlinOneFragment.newInstance("one", "two")
         } else if (index == 1) {
             fragment = KotlinClassFragment.newInstance("", "")
         }
-
         supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentContainer, fragment)
                 .commit()

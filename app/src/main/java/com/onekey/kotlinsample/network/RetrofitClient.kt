@@ -1,6 +1,9 @@
 package com.onekey.kotlinsample.network
 
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 /**
  * Created by onekey on 2019/6/20.
@@ -10,28 +13,33 @@ class RetrofitClient private constructor() {
     private var mRetrofit : Retrofit? = null
     private var mBaseUrl : String? = null
 
-    constructor(url: String) : this() {
-
+    init {
+        mRetrofit = Retrofit.Builder()
+                .baseUrl("http://cdt0-openapi.taoshouyou.com/api/")
+                .client(NetworkHttpClient.defaultConfig())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
     }
 
     companion object {
 
-        private var mIntance : RetrofitClient? = null
+        private var mInstance : RetrofitClient? = null
 
-        fun instance(url: String) : RetrofitClient? {
-            if (mIntance == null) {
-                synchronized(RetrofitClient::class) {
-                    if (mIntance == null)
-                        mIntance = RetrofitClient(url)
-                }
+            get() {
+                if (field == null)
+                    field = RetrofitClient()
+                return field
             }
-            return mIntance
-        }
 
+        @Synchronized
+        fun get() : RetrofitClient {
+            return mInstance!!
+        }
     }
 
-
-    fun instance(baseUrl : String) : RetrofitClient? {
-        return null
+    fun <T> create(cls : Class<T>) : T {
+        return mRetrofit!!.create(cls)
     }
 }
